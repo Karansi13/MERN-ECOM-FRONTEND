@@ -18,7 +18,6 @@ import {
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import {
-  fetchAllProductsAsync,
   fetchBrandsAsync,
   fetchCategoriesAsync,
   fetchProductsByFilterAsync,

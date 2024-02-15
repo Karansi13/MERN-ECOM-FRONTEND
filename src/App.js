@@ -65,6 +65,7 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser)
 
+  // we are dispatching this in App becz as soon as the user logged in his cart is being showed in the navbar, So you have to showw the updated cart
   useEffect(() => {
     if(user){
       dispatch(fetchItemsByUserIdAsync(user.id))
