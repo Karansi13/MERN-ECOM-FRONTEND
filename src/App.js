@@ -1,52 +1,67 @@
-import React from 'react';
-import './App.css';
-import Home from './features/pages/Home';
-import LoginPage from './features/pages/LoginPage';
-import SignuPage from './features/pages/SignuPage';
-import CartPage from './features/pages/CartPage';
+import React from "react";
+import "./App.css";
+import Home from "./features/pages/Home";
+import LoginPage from "./features/pages/LoginPage";
+import SignuPage from "./features/pages/SignuPage";
+import CartPage from "./features/pages/CartPage";
 import {
   createBrowserRouter,
   RouterProvider,
   Route,
   Link,
 } from "react-router-dom";
-import Checkout from './features/pages/Checkout';
-import ProductDetails from './features/product/components/ProductDetails';
-import ProductDetailPage from './features/pages/ProductDetailPage';
-
+import Checkout from "./features/pages/Checkout";
+import ProductDetails from "./features/product/components/ProductDetails";
+import ProductDetailPage from "./features/pages/ProductDetailPage";
+import Protected from "./features/auth/components/Protected";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (<Home/>),
+    element: (
+      <Protected>
+        <Home />
+      </Protected>
+    ),
   },
   {
     path: "/login",
-    element: (<LoginPage/>),
+    element: <LoginPage />,
   },
   {
     path: "/signup",
-    element: (<SignuPage/>),
+    element: <SignuPage />,
   },
   {
     path: "/cart",
-    element: (<CartPage/>),
+    element: (
+      <Protected>
+        <CartPage />
+      </Protected>
+    ),
   },
   {
     path: "/checkout",
-    element: (<Checkout/>),
+    element: (
+      <Protected>
+        <Checkout />
+      </Protected>
+    ),
   },
   {
     path: "/product-detail/:id",
-    element: (<ProductDetailPage/>),
+    element: (
+      <Protected>
+        <ProductDetailPage />
+      </Protected>
+    ),
   },
 ]);
 
-
 function App() {
   return (
-    <div className='App'>
-    <RouterProvider router={router} />
+    <div className="App">
+      <RouterProvider router={router} />
     </div>
   );
 }
