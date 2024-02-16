@@ -11,12 +11,15 @@ import {
   Link,
 } from "react-router-dom";
 import Checkout from "./features/pages/Checkout";
-import ProductDetails from "./features/product/components/ProductDetails";
+// import ProductDetails from "./features/product/components/ProductDetails";
 import ProductDetailPage from "./features/pages/ProductDetailPage";
 import Protected from "./features/auth/components/Protected";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItemsByUserIdAsync } from "./features/Cart/cartSlice";
 import { selectLoggedInUser } from "./features/auth/authSlice";
+import PageNotFound from "./features/pages/404";
+import OrderSuccessPage from "./features/pages/OrderSuccessPage";
+import UserOrderPage from "./features/pages/UserOrderPage";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +60,26 @@ const router = createBrowserRouter([
       <Protected>
         <ProductDetailPage />
       </Protected>
+    ),
+  },
+  {
+    path: "/order-success/:id",
+    element: (
+      <OrderSuccessPage>
+        <ProductDetailPage />
+      </OrderSuccessPage>
+    ),
+  },
+  {
+    path: "/orders",
+    element: (
+      <UserOrderPage/>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <PageNotFound/>
     ),
   },
 ]);

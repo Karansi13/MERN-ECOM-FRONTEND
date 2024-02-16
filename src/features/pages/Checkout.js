@@ -11,7 +11,7 @@ import {
 } from "../Cart/cartSlice";
 import { useForm } from "react-hook-form";
 import { selectLoggedInUser, updateUserAsync } from "../auth/authSlice";
-import { createOrderAsync } from "../order/orderSlice";
+import { createOrderAsync, selectCurrentOrder } from "../order/orderSlice";
 
 const Checkout = () => {
   const {
@@ -23,6 +23,7 @@ const Checkout = () => {
   const [open, setOpen] = useState(true);
   const user = useSelector(selectLoggedInUser);
   const items = useSelector(selectItems);
+  const currentOrder = useSelector(selectCurrentOrder)
   const dispatch = useDispatch();
 
   const totalAmount = items.reduce(
@@ -54,8 +55,22 @@ const Checkout = () => {
   };
 
   const handleOrder = (e) => {
-    const order = {items, totalAmount, totalItems, user, PaymentMethod, selectedAddress}
-    dispatch(createOrderAsync(order));
+    if (selectedAddress && PaymentMethod) {
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user,
+        PaymentMethod,
+        selectedAddress,
+        status: 'pending'
+      };
+      dispatch(createOrderAsync(order));
+      // need to redirect from here to a new page of order success.
+    } else {
+      // TODO: we can use proper messaging popup here
+      alert("Enter Address and Payment method");
+    }
     // TODO: Redirect to order-success page
     // TODO: clear cart after order
     // TODO: on server change the stock number of items
@@ -64,6 +79,7 @@ const Checkout = () => {
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -410,9 +426,10 @@ const Checkout = () => {
                   Shipping and taxes calculated at checkout.
                 </p>
                 <div className="mt-6">
-                  <div 
-                  onClick={handleOrder}
-                  className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                  <div
+                    onClick={handleOrder}
+                    className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  >
                     Order Now
                   </div>
                 </div>
