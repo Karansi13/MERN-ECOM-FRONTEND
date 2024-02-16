@@ -2448,13 +2448,13 @@
           "pinCode": "490001"
         },
         {
-          "name": "KARAN SINGH KALSI",
+          "name": "KARAN SINGH ",
           "email": "ks888570@gmail.com",
-          "phone": "08103341154",
-          "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
           "city": "bhilai",
           "state": "chattisgarh",
-          "pinCode": "490001"
+          "pinCode": "490001",
+          "phone": "08103341154",
+          "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
         }
       ]
     },
@@ -2677,6 +2677,192 @@
         "email": "temp@gmail.com",
         "password": "Karan123",
         "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          }
+        ]
+      },
+      "PaymentMethod": "cash",
+      "selectedAddress": {
+        "name": "KARAN SINGH KALSI",
+        "email": "ks888570@gmail.com",
+        "phone": "08103341154",
+        "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+        "city": "bhilai",
+        "state": "chattisgarh",
+        "pinCode": "490001"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "b7ae",
+      "items": [
+        {
+          "id": "b293",
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/3/1.jpg"
+          ],
+          "quantity": 1,
+          "user": "b2f4"
+        }
+      ],
+      "totalAmount": 1249,
+      "totalItems": 1,
+      "user": {
+        "id": "b2f4",
+        "email": "ks888570@gmail.com",
+        "password": "Karan123",
+        "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          },
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          }
+        ]
+      },
+      "PaymentMethod": "card",
+      "selectedAddress": {
+        "name": "KARAN SINGH KALSI",
+        "email": "ks888570@gmail.com",
+        "phone": "08103341154",
+        "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+        "city": "bhilai",
+        "state": "chattisgarh",
+        "pinCode": "490001"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "8dbc",
+      "items": [
+        {
+          "id": "5c2d",
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/2/1.jpg",
+            "https://cdn.dummyjson.com/product-images/2/2.jpg",
+            "https://cdn.dummyjson.com/product-images/2/3.jpg",
+            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": "b2f4"
+        }
+      ],
+      "totalAmount": 899,
+      "totalItems": 1,
+      "user": {
+        "id": "b2f4",
+        "email": "ks888570@gmail.com",
+        "password": "Karan123",
+        "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          }
+        ]
+      },
+      "PaymentMethod": "cash",
+      "selectedAddress": {
+        "name": "KARAN SINGH KALSI",
+        "email": "ks888570@gmail.com",
+        "phone": "08103341154",
+        "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+        "city": "bhilai",
+        "state": "chattisgarh",
+        "pinCode": "490001"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "b995",
+      "items": [
+        {
+          "id": "64d9",
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/2/1.jpg",
+            "https://cdn.dummyjson.com/product-images/2/2.jpg",
+            "https://cdn.dummyjson.com/product-images/2/3.jpg",
+            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": "b2f4"
+        }
+      ],
+      "totalAmount": 899,
+      "totalItems": 1,
+      "user": {
+        "id": "b2f4",
+        "email": "ks888570@gmail.com",
+        "password": "Karan123",
+        "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          },
+          {
+            "name": "KARAN SINGH ",
+            "email": "ks888570@gmail.com",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
+          },
           {
             "name": "KARAN SINGH KALSI",
             "email": "ks888570@gmail.com",

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectLoggedInUser } from "../../auth/authSlice";
-import { fetchLoggedInUserOrderAsync, selectUserOrders } from "../userSlice";
+import { fetchLoggedInUserOrderAsync, selectUserInfo, selectUserOrders } from "../userSlice";
 
 export default function UserOrders() {
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrders);
   // const [incrementAmount, setIncrementAmount] = useState('2');
 
@@ -109,3 +108,4 @@ export default function UserOrders() {
     </div>
   );
 }
+    
