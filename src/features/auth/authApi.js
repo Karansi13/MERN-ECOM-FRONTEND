@@ -36,5 +36,11 @@ export function checkUser(loginInfo) {
 );
 }
 
-
 // updateUser is not in userAPI
+
+export function signOut(userId) {
+  return new Promise(async (resolve) => {
+    resolve({ data: 'success' })
+}
+);
+}
