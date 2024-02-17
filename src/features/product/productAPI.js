@@ -65,7 +65,6 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   for (let key in sort) {
     qeuryString += `${key}=${sort[key]}&`;
   }
-  console.log(pagination);
   for (let key in pagination) {
     qeuryString += `${key}=${pagination[key]}&`;
   }

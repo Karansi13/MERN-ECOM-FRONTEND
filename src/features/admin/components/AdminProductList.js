@@ -26,7 +26,7 @@ import {
   selectCategories,
   selectTotalItems,
 } from "../../product/productSlice";
-import { ITEMS_PER_PAGE } from "../../../app/constants";
+import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -46,7 +46,6 @@ export default function AdminProductList() {
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
   const products = useSelector(selectAllProducts);
-  console.log(products);
   const totalItems = useSelector(selectTotalItems);
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
@@ -67,7 +66,6 @@ export default function AdminProductList() {
   ];
 
   const handleFilter = (e, section, option) => {
-    console.log(e.target.checked);
     const newFilter = { ...filter };
     // TODO : on server it will support multiple categories
     if (e.target.checked) {
@@ -82,19 +80,16 @@ export default function AdminProductList() {
       );
       newFilter[section.id].splice(index, 1);
     }
-    console.log({ newFilter });
     setFilter(newFilter);
   };
 
   const handleSort = (e, option) => {
     //   // order is not working in the new vesion of json-server
     const sort = { _sort: option.sort };
-    console.log({ sort });
     setSort(sort);
   };
 
   const handlePage = (page) => {
-    console.log({ page });
     setPage(page);
   };
 
@@ -157,7 +152,6 @@ export default function AdminProductList() {
                         {({ active }) => (
                           <p
                             onClick={(e) => handleSort(e, option)}
-                            // onClick={e => console.log(e)}
                             className={classNames(
                               option.current
                                 ? "font-medium text-gray-900"
@@ -387,7 +381,6 @@ function DesktopFilter({ handleFilter , filters}) {
                           type="checkbox"
                           defaultChecked={option.checked}
                           onChange={(e) => handleFilter(e, section, option)}
-                          // onChange={(e) => console.log(e.target.value)} // check event is working or not
                           className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                         />
                         <label
@@ -523,10 +516,7 @@ function ProductGrid({ products }) {
                     </div>
                     <div>
                       <p className="text-sm block font-medium text-gray-900">
-                        $
-                        {Math.round(
-                          product.price * (1 - product.discountPercentage / 100)
-                        )}
+                      ${discountedPrice(product)}
                       </p>
                       <p className="text-sm block line-through font-medium text-gray-400">
                         ${product.price}

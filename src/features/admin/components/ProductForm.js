@@ -64,7 +64,6 @@ function ProductForm() {
     <form
       noValidate
       onSubmit={handleSubmit((data) => {
-        console.log(data);
         const product = { ...data };
         product.images = [
           product.image1,
@@ -79,7 +78,6 @@ function ProductForm() {
         product.price = +product.price;  // string to integer
         product.stock = +product.stock;
         product.discountPercentage = +product.discountPercentage;
-        console.log(product);
 
         if (params.id) {
           product.id = params.id;

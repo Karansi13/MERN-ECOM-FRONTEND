@@ -2531,7 +2531,28 @@
       ]
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "7d94",
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/2/1.jpg",
+        "https://cdn.dummyjson.com/product-images/2/2.jpg",
+        "https://cdn.dummyjson.com/product-images/2/3.jpg",
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": "f21d"
+    }
+  ],
   "orders": [
     {
       "id": "c04e",
@@ -2615,7 +2636,7 @@
         "state": "chattisgarh",
         "pinCode": "490001"
       },
-      "status": "pending"
+      "status": "delivered"
     },
     {
       "id": "456c",
@@ -2927,6 +2948,345 @@
             "city": "bhilai",
             "state": "chattisgarh",
             "pinCode": "490001"
+          }
+        ]
+      },
+      "PaymentMethod": "cash",
+      "selectedAddress": {
+        "name": "KARAN SINGH KALSI",
+        "email": "ks888570@gmail.com",
+        "phone": "08103341154",
+        "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+        "city": "bhilai",
+        "state": "chattisgarh",
+        "pinCode": "490001"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "0f97",
+      "items": [
+        {
+          "id": "18e2",
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/2/1.jpg",
+            "https://cdn.dummyjson.com/product-images/2/2.jpg",
+            "https://cdn.dummyjson.com/product-images/2/3.jpg",
+            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": "b2f4"
+        }
+      ],
+      "totalAmount": 899,
+      "totalItems": 1,
+      "user": {
+        "id": "b2f4",
+        "email": "ks888570@gmail.com",
+        "password": "Karan123",
+        "role": "admin",
+        "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          },
+          {
+            "name": "KARAN SINGH ",
+            "email": "ks888570@gmail.com",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
+          }
+        ]
+      },
+      "PaymentMethod": "cash",
+      "selectedAddress": {
+        "name": "KARAN SINGH KALSI",
+        "email": "ks888570@gmail.com",
+        "phone": "08103341154",
+        "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+        "city": "bhilai",
+        "state": "chattisgarh",
+        "pinCode": "490001"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "b838",
+      "items": [
+        {
+          "id": "0202",
+          "title": "OPPOF19",
+          "description": "OPPO F19 is officially announced on April 2021.",
+          "price": 280,
+          "discountPercentage": 17.91,
+          "rating": 4.3,
+          "stock": 123,
+          "brand": "OPPO",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/4/1.jpg",
+            "https://cdn.dummyjson.com/product-images/4/2.jpg",
+            "https://cdn.dummyjson.com/product-images/4/3.jpg",
+            "https://cdn.dummyjson.com/product-images/4/4.jpg",
+            "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": "b2f4"
+        }
+      ],
+      "totalAmount": 230,
+      "totalItems": 1,
+      "user": {
+        "id": "b2f4",
+        "email": "ks888570@gmail.com",
+        "password": "Karan123",
+        "role": "admin",
+        "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          },
+          {
+            "name": "KARAN SINGH ",
+            "email": "ks888570@gmail.com",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
+          }
+        ]
+      },
+      "PaymentMethod": "card",
+      "selectedAddress": {
+        "name": "KARAN SINGH ",
+        "email": "ks888570@gmail.com",
+        "city": "bhilai",
+        "state": "chattisgarh",
+        "pinCode": "490001",
+        "phone": "08103341154",
+        "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "2955",
+      "items": [
+        {
+          "id": "c26a",
+          "title": "Huawei P30",
+          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          "price": 499,
+          "discountPercentage": 10.58,
+          "rating": 4.09,
+          "stock": 32,
+          "brand": "Huawei",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/5/1.jpg",
+            "https://cdn.dummyjson.com/product-images/5/2.jpg",
+            "https://cdn.dummyjson.com/product-images/5/3.jpg"
+          ],
+          "quantity": 1,
+          "user": "b2f4"
+        },
+        {
+          "id": "9e2e",
+          "title": "Huawei P30",
+          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          "price": 499,
+          "discountPercentage": 10.58,
+          "rating": 4.09,
+          "stock": 32,
+          "brand": "Huawei",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/5/1.jpg",
+            "https://cdn.dummyjson.com/product-images/5/2.jpg",
+            "https://cdn.dummyjson.com/product-images/5/3.jpg"
+          ],
+          "quantity": 1,
+          "user": "b2f4"
+        }
+      ],
+      "totalAmount": 892,
+      "totalItems": 2,
+      "user": {
+        "id": "b2f4",
+        "email": "ks888570@gmail.com",
+        "password": "Karan123",
+        "role": "admin",
+        "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          },
+          {
+            "name": "KARAN SINGH ",
+            "email": "ks888570@gmail.com",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
+          }
+        ]
+      },
+      "PaymentMethod": "cash",
+      "selectedAddress": {
+        "name": "KARAN SINGH KALSI",
+        "email": "ks888570@gmail.com",
+        "phone": "08103341154",
+        "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+        "city": "bhilai",
+        "state": "chattisgarh",
+        "pinCode": "490001"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "77aa",
+      "items": [
+        {
+          "id": "3882",
+          "title": "Samsung Galaxy Book",
+          "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+          "price": 1499,
+          "discountPercentage": 4.15,
+          "rating": 4.25,
+          "stock": 50,
+          "brand": "Samsung",
+          "category": "laptops",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/7/1.jpg",
+            "https://cdn.dummyjson.com/product-images/7/2.jpg",
+            "https://cdn.dummyjson.com/product-images/7/3.jpg",
+            "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": "b2f4"
+        }
+      ],
+      "totalAmount": 1437,
+      "totalItems": 1,
+      "user": {
+        "id": "b2f4",
+        "email": "ks888570@gmail.com",
+        "password": "Karan123",
+        "role": "admin",
+        "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          },
+          {
+            "name": "KARAN SINGH ",
+            "email": "ks888570@gmail.com",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
+          }
+        ]
+      },
+      "PaymentMethod": "cash",
+      "selectedAddress": {
+        "name": "KARAN SINGH ",
+        "email": "ks888570@gmail.com",
+        "city": "bhilai",
+        "state": "chattisgarh",
+        "pinCode": "490001",
+        "phone": "08103341154",
+        "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "23a9",
+      "items": [
+        {
+          "id": "2836",
+          "title": "Dani Daneals",
+          "description": "Very hot sexy bitch",
+          "brand": "Apple",
+          "category": "womens-watches",
+          "price": 200,
+          "discountPercentage": 20,
+          "stock": 2,
+          "thumbnail": "https://cdn.erocurves.com/wp-content/uploads/2021/08/31/MiaM03_0045.jpg",
+          "images": [
+            "https://cdn.erocurves.com/wp-content/uploads/2021/08/31/MiaM03_0043.jpg",
+            "https://cdn.erocurves.com/wp-content/uploads/2021/08/31/MiaM03_0040.jpg",
+            "https://cdn.erocurves.com/wp-content/uploads/2021/08/31/MiaM03_0048.jpg",
+            "https://cdn.erocurves.com/wp-content/uploads/2021/08/31/MiaM03_0046.jpg"
+          ],
+          "rating": 0,
+          "quantity": 1,
+          "user": "b2f4"
+        }
+      ],
+      "totalAmount": 160,
+      "totalItems": 1,
+      "user": {
+        "id": "b2f4",
+        "email": "ks888570@gmail.com",
+        "password": "Karan123",
+        "role": "admin",
+        "addresses": [
+          {
+            "name": "KARAN SINGH KALSI",
+            "email": "ks888570@gmail.com",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001"
+          },
+          {
+            "name": "KARAN SINGH ",
+            "email": "ks888570@gmail.com",
+            "city": "bhilai",
+            "state": "chattisgarh",
+            "pinCode": "490001",
+            "phone": "08103341154",
+            "street": "sect-1,st-10,q.no.-11/B , bhilai , dist-durg  ,(C.G)"
           }
         ]
       },

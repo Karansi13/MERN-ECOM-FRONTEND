@@ -13,7 +13,6 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
   return (
     <>
       {user && <Navigate to="/" replace={true} />}
@@ -42,7 +41,6 @@ const Signup = () => {
                   role: "user", // TODO: This role can be directly givne on backend
                 })
                 ); 
-              console.log(data);
             })}
           >
             <div>
