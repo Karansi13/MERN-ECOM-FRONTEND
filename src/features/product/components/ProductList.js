@@ -24,18 +24,18 @@ import {
   selectAllProducts,
   selectBrands,
   selectCategories,
+  selectProductListStatus,
   selectTotalItems,
 } from "../productSlice";
 import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
 import Pagination from "../../common/Pagination";
+import { ThreeDots } from "react-loader-spinner";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
   { name: "Price: Low to High", sort: "price", order: "asc", current: false },
   { name: "Price: High to Low", sort: "price", order: "desc", current: false },
 ];
-
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -48,6 +48,7 @@ export default function ProductList() {
   const categories = useSelector(selectCategories);
   const products = useSelector(selectAllProducts);
   const totalItems = useSelector(selectTotalItems);
+  const status = useSelector(selectProductListStatus);
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
   const [page, setPage] = useState(1);
@@ -57,12 +58,12 @@ export default function ProductList() {
     {
       id: "category",
       name: "Category",
-      options: categories
+      options: categories,
     },
     {
       id: "brand",
       name: "Brands",
-      options: brands
+      options: brands,
     },
   ];
 
@@ -102,13 +103,13 @@ export default function ProductList() {
   }, [dispatch, filter, sort, page]);
 
   useEffect(() => {
-    setPage(1)
-  },[totalItems,sort])
+    setPage(1);
+  }, [totalItems, sort]);
 
   useEffect(() => {
-    dispatch(fetchBrandsAsync())
-    dispatch(fetchCategoriesAsync())
-  },[dispatch])
+    dispatch(fetchBrandsAsync());
+    dispatch(fetchCategoriesAsync());
+  }, [dispatch]);
 
   return (
     <div className="bg-white">
@@ -200,19 +201,19 @@ export default function ProductList() {
 
             {/* Product grid */}
             <div className="lg:col-span-3">
-              <ProductGrid products={products} />
+              <ProductGrid products={products} status={status} />
             </div>
           </div>
         </section>
 
         {/* section of products end here */}
-        
-          <Pagination
-            page={page}
-            setPage={setPage}
-            handlePage={handlePage}
-            totalItems={totalItems}
-          />
+
+        <Pagination
+          page={page}
+          setPage={setPage}
+          handlePage={handlePage}
+          totalItems={totalItems}
+        />
       </main>
     </div>
   );
@@ -222,7 +223,7 @@ function MobileFilter({
   mobileFiltersOpen,
   setMobileFiltersOpen,
   handleFilter,
-  filters
+  filters,
 }) {
   return (
     <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -337,7 +338,7 @@ function MobileFilter({
   );
 }
 
-function DesktopFilter({ handleFilter , filters}) {
+function DesktopFilter({ handleFilter, filters }) {
   return (
     <>
       {/* Filters */}
@@ -396,13 +397,26 @@ function DesktopFilter({ handleFilter , filters}) {
   );
 }
 
-function ProductGrid({ products }) {
+function ProductGrid({ products, status }) {
   return (
     <>
       {/* This is our  Product List */}
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {status === "loading" ? (
+              <ThreeDots
+                visible={true}
+                height="80"
+                width="80"
+                
+                color="rgb(79, 70, 229)"
+                radius="9"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            ) : null}
             {products.map((product) => (
               <Link to={`/product-detail/${product.id}`} key={product.id}>
                 <div className="group relative border-solid border-2 p-2 border-gray-200">
@@ -431,21 +445,24 @@ function ProductGrid({ products }) {
                     </div>
                     <div>
                       <p className="text-sm block font-medium text-gray-900">
-                        $
-                        {discountedPrice(product)}
+                        ${discountedPrice(product)}
                       </p>
                       <p className="text-sm block line-through font-medium text-gray-400">
                         ${product.price}
                       </p>
                     </div>
                   </div>
-                {/*  Only for now backend create hone ke baad remove krdunga */}
-                  {product.deleted && <div>
-                    <p className="text-sm text-red-400">product deleted</p>
-                  </div>}
-                  {product.stock <= 0 && <div>
-                    <p className="text-sm text-red-400">Out of Stock</p>
-                  </div>}
+                  {/*  Only for now backend create hone ke baad remove krdunga */}
+                  {product.deleted && (
+                    <div>
+                      <p className="text-sm text-red-400">product deleted</p>
+                    </div>
+                  )}
+                  {product.stock <= 0 && (
+                    <div>
+                      <p className="text-sm text-red-400">Out of Stock</p>
+                    </div>
+                  )}
                 </div>
               </Link>
             ))}

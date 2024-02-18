@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import ProductList from '../product/components/ProductList'
 import { Link } from 'react-router-dom'
+import Footer from '../common/Footer'
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <Navbar>
             <ProductList/>
         </Navbar>
+        <Footer/>
     </div>
   )
 }
