@@ -86,8 +86,8 @@ export default function ProductList() {
   };
 
   const handleSort = (e, option) => {
-    //   // order is not working in the new vesion of json-server
-    const sort = { _sort: option.sort };
+    //   fix the issue  of sorting from backend
+    const sort = { _sort: option.sort, _order: option.order };
     setSort(sort);
   };
 
