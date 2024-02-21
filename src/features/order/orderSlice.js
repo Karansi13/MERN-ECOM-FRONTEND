@@ -7,6 +7,7 @@ const initialState = {
   currentOrder: null,
   totalOrders: 0
 };
+//we may need more info of current order
 
 export const createOrderAsync = createAsyncThunk(
   'order/createOrder',
@@ -40,7 +41,7 @@ export const orderSlice = createSlice({
   reducers: {
     resetOrder: (state) => {
       state.currentOrder = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,6 +71,7 @@ export const orderSlice = createSlice({
       })
   },
 });
+
 export const { resetOrder } = orderSlice.actions;
 
 export const selectCurrentOrder = (state) => state.order.currentOrder;

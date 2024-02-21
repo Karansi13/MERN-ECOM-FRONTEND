@@ -1,7 +1,7 @@
 // A mock function to mimic making an async request for data
 export function createUser(userData) {
   return new Promise(async (resolve) => {
-  const response = await fetch('http://localhost:8080/users',{
+  const response = await fetch('http://localhost:8080/auth/signup',{
     method: 'POST',
     body: JSON.stringify(userData),
     headers: {'Content-type': 'application/json'}
@@ -16,23 +16,25 @@ export function createUser(userData) {
 // temporarily front end se check krrhe h once backend is created we will shift this logic to backend
 export function checkUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
-    const email = loginInfo.email;
-    const password = loginInfo.password;
-  const response = await fetch('http://localhost:8080/users?email='+email)
-  const data = await response.json()
-  if(data.length){
-    if(password === data[0].password){
-      resolve({data:data[0]})
-    } else{
-      reject({message: 'wrong credential'})
+    try {
+      const response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
+        body: JSON.stringify(loginInfo),
+        headers: { 'content-type': 'application/json' },
+      });
+      if (response.ok) {  // only 200 requests
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const error = await response.json();
+        reject(error);
+      }
+    } catch (error) {
+      reject( error );
     }
-    resolve({data: data[0]})
-  } else{
-    reject({message: 'user not found'})
-  }
-  // TODO: on server it will only return some info of user (not password)
-}
-);
+
+    // TODO: on server it will only return some info of user (not password)
+  });
 }
 
 // updateUser is not in userAPI

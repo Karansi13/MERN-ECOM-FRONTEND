@@ -42,21 +42,20 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const user = useSelector(selectLoggedInUser);
   const product = useSelector(selectProductById);
-  const cartItems = useSelector(selectItems);
+  const items = useSelector(selectItems);
   const dispatch = useDispatch();
   const params = useParams();
   const alert = useAlert();
 
   const handleCart = (e) => {
     e.preventDefault();
-    if (cartItems.findIndex((item) => item.productId === product.id) <= 0) {
+    if (items.findIndex((item) => item.product.id === product.id) < 0) {
+      console.log({ items, product });
       const newItem = {
-        ...product,
-        productId: product.id,
+        product: product.id,
         quantity: 1,
         user: user.id,
       };
-      delete newItem["id"];
       dispatch(addToCartAsync(newItem));
       // TODO: It will be based on server response of backend
       alert.success("Item added to Cart");
@@ -319,11 +318,6 @@ export default function ProductDetails() {
                   Add to Cart
                 </button>
               </form>
-              <button
-                  onClick={() => {
-                    alert.show("Oh look, an alert!");
-                  }}
-                >Show Alert</button>
             </div>
 
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">

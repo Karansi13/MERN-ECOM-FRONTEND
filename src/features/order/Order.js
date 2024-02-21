@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function Order() {
-  // const count = useSelector(selectCount);
   const dispatch = useDispatch();
-  // const [incrementAmount, setIncrementAmount] = useState('2');
 
 
   return (
     <div>
-      
+      <div>{/* We will use to show orders on Admin Page */}</div>
     </div>
   );
 }

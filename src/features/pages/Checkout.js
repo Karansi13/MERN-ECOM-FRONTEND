@@ -1,86 +1,89 @@
-import React, { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, Navigate } from "react-router-dom";
 import {
-  deleteItemsFromCartAsync,
+  deleteItemFromCartAsync,
   selectItems,
-  updateCartItemsAsync,
+  updateCartAsync,
 } from "../Cart/cartSlice";
+import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { updateUserAsync } from "../auth/authSlice";
+import { updateUserAsync } from "../user/userSlice";
+import { useState } from "react";
 import { createOrderAsync, selectCurrentOrder } from "../order/orderSlice";
 import { selectUserInfo } from "../user/userSlice";
 import { discountedPrice } from "../../app/constants";
 
-const Checkout = () => {
+function Checkout() {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
+    formState: { errors },
   } = useForm();
 
-  const [open, setOpen] = useState(true);
   const user = useSelector(selectUserInfo);
   const items = useSelector(selectItems);
-  const currentOrder = useSelector(selectCurrentOrder)
-  const dispatch = useDispatch();
+  const currentOrder = useSelector(selectCurrentOrder);
 
   const totalAmount = items.reduce(
-    (amount, item) => discountedPrice(item) * item.quantity + amount,
+    (amount, item) => discountedPrice(item.product) * item.quantity + amount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
 
   const [selectedAddress, setSelectedAddress] = useState(null);
-  const [PaymentMethod, setPaymentMethod] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState(null);
 
   const handleQuantity = (e, item) => {
-    // The reason we use + is that thw value is coming in the form of string & we are converting it in int.
-    dispatch(updateCartItemsAsync({ ...item, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {
-    dispatch(deleteItemsFromCartAsync(id));
+    dispatch(deleteItemFromCartAsync(id));
   };
 
   const handleAddress = (e) => {
+    console.log(e.target.value);
     setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
+    console.log(e.target.value);
     setPaymentMethod(e.target.value);
   };
 
   const handleOrder = (e) => {
-    if (selectedAddress && PaymentMethod) {
+    if (selectedAddress && paymentMethod) {
       const order = {
         items,
         totalAmount,
         totalItems,
-        user,
-        PaymentMethod,
+        user: user.id,
+        paymentMethod,
         selectedAddress,
-        status: 'pending'
+        status: "pending", // other status can be delivered, received.
       };
       dispatch(createOrderAsync(order));
       // need to redirect from here to a new page of order success.
     } else {
-      // TODO: we can use proper messaging popup here
+      // TODO : we can use proper messaging popup here
       alert("Enter Address and Payment method");
     }
-    // TODO: Redirect to order-success page
-    // TODO: clear cart after order
-    // TODO: on server change the stock number of items
+    //TODO : Redirect to order-success page
+    //TODO : clear cart after order
+    //TODO : on server change the stock number of items
   };
 
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
-      {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
+      {currentOrder && (
+        <Navigate
+          to={`/order-success/${currentOrder.id}`}
+          replace={true}
+        ></Navigate>
+      )}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -89,6 +92,7 @@ const Checkout = () => {
               className="bg-white px-5 py-12 mt-12"
               noValidate
               onSubmit={handleSubmit((data) => {
+                console.log(data);
                 dispatch(
                   updateUserAsync({
                     ...user,
@@ -106,6 +110,7 @@ const Checkout = () => {
                   <p className="mt-1 text-sm leading-6 text-gray-600">
                     Use a permanent address where you can receive mail.
                   </p>
+
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-4">
                       <label
@@ -117,8 +122,8 @@ const Checkout = () => {
                       <div className="mt-2">
                         <input
                           type="text"
-                          {...register('name', {
-                            required: 'name is required',
+                          {...register("name", {
+                            required: "name is required",
                           })}
                           id="name"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -128,6 +133,7 @@ const Checkout = () => {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-4">
                       <label
                         htmlFor="email"
@@ -138,8 +144,8 @@ const Checkout = () => {
                       <div className="mt-2">
                         <input
                           id="email"
-                          {...register('email', {
-                            required: 'email is required',
+                          {...register("email", {
+                            required: "email is required",
                           })}
                           type="email"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -149,6 +155,7 @@ const Checkout = () => {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-3">
                       <label
                         htmlFor="phone"
@@ -159,8 +166,8 @@ const Checkout = () => {
                       <div className="mt-2">
                         <input
                           id="phone"
-                          {...register('phone', {
-                            required: 'phone is required',
+                          {...register("phone", {
+                            required: "phone is required",
                           })}
                           type="tel"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -170,6 +177,7 @@ const Checkout = () => {
                         )}
                       </div>
                     </div>
+
                     <div className="col-span-full">
                       <label
                         htmlFor="street-address"
@@ -180,8 +188,8 @@ const Checkout = () => {
                       <div className="mt-2">
                         <input
                           type="text"
-                          {...register('street', {
-                            required: 'street is required',
+                          {...register("street", {
+                            required: "street is required",
                           })}
                           id="street"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -193,6 +201,7 @@ const Checkout = () => {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-2 sm:col-start-1">
                       <label
                         htmlFor="city"
@@ -203,8 +212,8 @@ const Checkout = () => {
                       <div className="mt-2">
                         <input
                           type="text"
-                          {...register('city', {
-                            required: 'city is required',
+                          {...register("city", {
+                            required: "city is required",
                           })}
                           id="city"
                           autoComplete="address-level2"
@@ -215,6 +224,7 @@ const Checkout = () => {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="state"
@@ -225,8 +235,8 @@ const Checkout = () => {
                       <div className="mt-2">
                         <input
                           type="text"
-                          {...register('state', {
-                            required: 'state is required',
+                          {...register("state", {
+                            required: "state is required",
                           })}
                           id="state"
                           autoComplete="address-level1"
@@ -237,6 +247,7 @@ const Checkout = () => {
                         )}
                       </div>
                     </div>
+
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="pinCode"
@@ -247,8 +258,8 @@ const Checkout = () => {
                       <div className="mt-2">
                         <input
                           type="text"
-                          {...register('pinCode', {
-                            required: 'pinCode is required',
+                          {...register("pinCode", {
+                            required: "pinCode is required",
                           })}
                           id="pinCode"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -262,6 +273,7 @@ const Checkout = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="mt-6 flex items-center justify-end gap-x-6">
                   <button
                     // onClick={e=>reset()}
@@ -286,7 +298,7 @@ const Checkout = () => {
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 Choose from Existing addresses
               </p>
-              <ul role="list">
+              <ul>
                 {user.addresses.map((address, index) => (
                   <li
                     key={index}
@@ -323,6 +335,7 @@ const Checkout = () => {
                   </li>
                 ))}
               </ul>
+
               <div className="mt-10 space-y-10">
                 <fieldset>
                   <legend className="text-sm font-semibold leading-6 text-gray-900">
@@ -339,7 +352,7 @@ const Checkout = () => {
                         onChange={handlePayment}
                         value="cash"
                         type="radio"
-                        checked={PaymentMethod === 'cash'}
+                        checked={paymentMethod === "cash"}
                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                       />
                       <label
@@ -354,7 +367,7 @@ const Checkout = () => {
                         id="card"
                         onChange={handlePayment}
                         name="payments"
-                        checked={PaymentMethod === 'card'}
+                        checked={paymentMethod === "card"}
                         value="card"
                         type="radio"
                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -383,21 +396,26 @@ const Checkout = () => {
                       <li key={item.id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                           <img
-                            src={item.thumbnail}
-                            alt={item.title}
+                            src={item.product.thumbnail}
+                            alt={item.product.title}
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
+
                         <div className="ml-4 flex flex-1 flex-col">
                           <div>
                             <div className="flex justify-between text-base font-medium text-gray-900">
                               <h3>
-                                <a href={item.href}>{item.title}</a>
+                                <a href={item.product.id}>
+                                  {item.product.title}
+                                </a>
                               </h3>
-                              <p className="ml-4">${discountedPrice(item)}</p>
+                              <p className="ml-4">
+                                ${discountedPrice(item.product)}
+                              </p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
-                              {item.brand}
+                              {item.product.brand}
                             </p>
                           </div>
                           <div className="flex flex-1 items-end justify-between text-sm">
@@ -419,6 +437,7 @@ const Checkout = () => {
                                 <option value="5">5</option>
                               </select>
                             </div>
+
                             <div className="flex">
                               <button
                                 onClick={(e) => handleRemove(e, item.id)}
@@ -435,6 +454,7 @@ const Checkout = () => {
                   </ul>
                 </div>
               </div>
+
               <div className="border-t border-gray-200 px-2 py-6 sm:px-2">
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Subtotal</p>
@@ -477,4 +497,5 @@ const Checkout = () => {
     </>
   );
 }
+
 export default Checkout;
