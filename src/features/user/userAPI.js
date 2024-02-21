@@ -1,7 +1,7 @@
 export function fetchLoggedInUserOrders(userId) {
   return new Promise(async (resolve) =>{
     // api changed user.id => user
-    const response = await fetch('http://localhost:8080/orders/user/'+userId) 
+    const response = await fetch('http://localhost:8080/orders/user/'+userId) // api changed 
     const data = await response.json()
     resolve({data})
   }
