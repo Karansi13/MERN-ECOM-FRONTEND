@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectItems } from "../Cart/cartSlice";
 import { selectLoggedInUser } from "../auth/authSlice";
+import { selectUserInfo } from "../user/userSlice";
 
 
 const navigation = [
@@ -30,11 +31,11 @@ const Navbar = ({ children }) => {
 
   const items = useSelector(selectItems);
 
-  const user = useSelector(selectLoggedInUser)
+  const userInfo = useSelector(selectUserInfo)
 
   return (
     <div>
-      <div className="min-h-full">
+      {userInfo && <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
@@ -53,7 +54,7 @@ const Navbar = ({ children }) => {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          item[user.role] ? <Link
+                          item[userInfo.role] ? <Link
                             key={item.name}
                             to={item.link}
                             className={classNames(
@@ -96,7 +97,7 @@ const Navbar = ({ children }) => {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src={user.imageUrl}
+                              src={userInfo.imageUrl}
                               alt=""
                             />
                           </Menu.Button>
@@ -176,17 +177,17 @@ const Navbar = ({ children }) => {
                     <div className="flex-shrink-0">
                       <img
                         className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
+                        src={userInfo.imageUrl}
                         alt=""
                       />
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
                         {/* this should come from userInfo */}
-                        {user.name}
+                        {userInfo.name}
                       </div>
                       <div className="text-sm font-medium leading-none text-gray-400">
-                        {user.email}
+                        {userInfo.email}
                       </div>
                     </div>
                     <Link to="/cart">
@@ -236,7 +237,7 @@ const Navbar = ({ children }) => {
             {children}
           </div>
         </main>
-      </div>
+      </div>}
     </div>
   );
 };

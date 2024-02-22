@@ -164,8 +164,9 @@ function App() {
   // we are dispatching this in App becz as soon as the user logged in his cart is being showed in the navbar, So you have to showw the updated cart
   useEffect(() => {
     if(user){
-      dispatch(fetchItemsByUserIdAsync(user.id))
-      dispatch(fetchLoggedInUserAsync(user.id))
+      dispatch(fetchItemsByUserIdAsync())
+      // we  can geet req.user by token onn backend so no need to give in front-end
+      dispatch(fetchLoggedInUserAsync())
     }
   }, [dispatch,user])
   return (
