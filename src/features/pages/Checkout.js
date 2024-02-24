@@ -44,12 +44,12 @@ function Checkout() {
   };
 
   const handleAddress = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setPaymentMethod(e.target.value);
   };
 
@@ -78,9 +78,15 @@ function Checkout() {
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
-      {currentOrder && (
+      {currentOrder && currentOrder.paymentMethod == 'cash' &&  (
         <Navigate
           to={`/order-success/${currentOrder.id}`}
+          replace={true}
+        ></Navigate>
+      )}
+      {currentOrder && currentOrder.paymentMethod == 'card' && (
+        <Navigate
+          to={`/stripe-checkout/`}
           replace={true}
         ></Navigate>
       )}
@@ -92,7 +98,7 @@ function Checkout() {
               className="bg-white px-5 py-12 mt-12"
               noValidate
               onSubmit={handleSubmit((data) => {
-                console.log(data);
+                // console.log(data);
                 dispatch(
                   updateUserAsync({
                     ...user,
@@ -477,7 +483,7 @@ function Checkout() {
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <p>
-                    or
+                    or {''}
                     <Link to="/">
                       <button
                         type="button"

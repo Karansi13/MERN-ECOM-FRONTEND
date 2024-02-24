@@ -15,7 +15,7 @@ import ProductDetailPage from "./features/pages/ProductDetailPage";
 import Protected from "./features/auth/components/Protected";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItemsByUserIdAsync } from "./features/Cart/cartSlice";
-import { selectLoggedInUser } from "./features/auth/authSlice";
+import { checkAuthAsync, selectLoggedInUser, selectUserChecked } from "./features/auth/authSlice";
 import PageNotFound from "./features/pages/404";
 import OrderSuccessPage from "./features/pages/OrderSuccessPage";
 import UserOrderPage from "./features/pages/UserOrderPage";
@@ -30,6 +30,7 @@ import AdminProductFormPage from "./features/pages/AdminProductFormPage";
 import AdminOrdersPage from "./features/pages/AdminOrdersPage";
 import { positions, Provider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import StripeCheckout from "./features/pages/StripeCheckout";
 
 const options = {
   timeout: 5000,
@@ -144,6 +145,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/stripe-checkout",
+    element: (
+      <Protected>
+        <StripeCheckout/>
+      </Protected>
+    ),
+  },
+  {
     path: "/forgot-password",
     element: (
       <ForgotPasswordPage/>
@@ -161,6 +170,13 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser)
 
+  const userChecked = useSelector(selectUserChecked);
+
+
+  useEffect(()=>{
+    dispatch(checkAuthAsync())
+  },[dispatch])
+
   // we are dispatching this in App becz as soon as the user logged in his cart is being showed in the navbar, So you have to showw the updated cart
   useEffect(() => {
     if(user){
@@ -171,9 +187,9 @@ function App() {
   }, [dispatch,user])
   return (
     <div className="App">
-    <Provider template={AlertTemplate} {...options}>
-      <RouterProvider router={router} />
-      </Provider>
+    { userChecked && <Provider template={AlertTemplate} {...options}>
+          <RouterProvider router={router} />
+        </Provider>}
     </div>
   );
 }

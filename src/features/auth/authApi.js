@@ -1,28 +1,26 @@
-// A mock function to mimic making an async request for data
+
 export function createUser(userData) {
   return new Promise(async (resolve) => {
-  const response = await fetch('http://localhost:8080/auth/signup',{
-    method: 'POST',
-    body: JSON.stringify(userData),
-    headers: {'Content-type': 'application/json'}
-  })
-  const data = await response.json()
-  // TODO: on server it will only return some info of user (not password)
-  resolve({ data })
-}
-);
+    const response = await fetch('/auth/signup', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: { 'content-type': 'application/json' },
+    });
+    const data = await response.json();
+    // TODO: on server it will only return some info of user (not password)
+    resolve({ data });
+  });
 }
 
-// temporarily front end se check krrhe h once backend is created we will shift this logic to backend
-export function checkUser(loginInfo) {
+export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch('http://localhost:8080/auth/login', {
+      const response = await fetch('/auth/login', {
         method: 'POST',
         body: JSON.stringify(loginInfo),
         headers: { 'content-type': 'application/json' },
       });
-      if (response.ok) {  // only 200 requests
+      if (response.ok) {
         const data = await response.json();
         resolve({ data });
       } else {
@@ -37,11 +35,29 @@ export function checkUser(loginInfo) {
   });
 }
 
-// updateUser is not in userAPI
+export function checkAuth() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch('/auth/check');
+      if (response.ok) {
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const error = await response.text();
+        reject(error);
+      }
+    } catch (error) {
+      reject( error );
+    }
+
+    // TODO: on server it will only return some info of user (not password)
+  });
+}
+
 
 export function signOut(userId) {
   return new Promise(async (resolve) => {
-    resolve({ data: 'success' })
-}
-);
+    // TODO: on server we will remove user session info
+    resolve({ data: 'success' });
+  });
 }
