@@ -119,7 +119,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/orders",
+    path: "/my-orders",
     element: (
       <UserOrderPage/>
     ),
