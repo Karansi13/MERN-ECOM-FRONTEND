@@ -16,7 +16,8 @@ const Signup = () => {
   return (
     <>
       {user && <Navigate to="/" replace={true} />}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+     <section class="bg-gray-50 dark:bg-gray-300">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-16 w-16"
@@ -149,6 +150,7 @@ const Signup = () => {
           </p>
         </div>
       </div>
+      </section>
     </>
   );
 };
