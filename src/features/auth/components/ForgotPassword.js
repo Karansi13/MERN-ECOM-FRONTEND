@@ -1,8 +1,15 @@
 import React from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { resetPasswordRequestAsync, selectMailSent } from "../authSlice";
 
 export default function ForgotPassword() {
+
+
+  const dispatch = useDispatch();
+  const mailSent = useSelector(selectMailSent)
+
   const {
     register,
     handleSubmit,
@@ -15,7 +22,7 @@ export default function ForgotPassword() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            src="/ecommerce.png"
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -27,7 +34,7 @@ export default function ForgotPassword() {
           <form
             noValidate
             onSubmit={handleSubmit((data) => {
-              // TODO: implementation on backend
+              dispatch(resetPasswordRequestAsync(data.email))
             })}
             className="space-y-6"
           >
@@ -45,7 +52,7 @@ export default function ForgotPassword() {
                   required: "Email is required",
                   pattern: {
                     value: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi,
-                    message: "Email is not valid",
+                    message: "Email is not valid",  
                   },
                 })}
                 type="email"
@@ -53,6 +60,9 @@ export default function ForgotPassword() {
               />
               {errors.email && (
                 <p className="text-red-500">{errors.email.message}</p>
+              )}
+              {mailSent && (
+                <p className="text-green-500 mt-3 text-center">Mail Sent</p>
               )}
               </div>
             </div>
