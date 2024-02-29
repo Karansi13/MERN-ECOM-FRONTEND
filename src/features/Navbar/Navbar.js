@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { selectItems } from "../Cart/cartSlice";
 import { selectLoggedInUser } from "../auth/authSlice";
 import { selectUserInfo } from "../user/userSlice";
-
+import { IoIosArrowDown } from "react-icons/io";
 
 const navigation = [
   { name: "Products", link: "/", user: true },
@@ -91,14 +91,11 @@ const Navbar = ({ children }) => {
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                          <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="relative flex max-w-xs items-center text-gray-400 hover:text-white p-1 text-sm focus:outline-none  focus:underline-offset-1 focus:ring-offset-2 gap-1">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src={userInfo.imageUrl}
-                              alt=""
-                            />
+                            <span className=" text-sm">{userInfo.email} </span>
+                            <span className="text-sm"><IoIosArrowDown /></span>
                           </Menu.Button>
                         </div>
                         <Transition
@@ -172,19 +169,9 @@ const Navbar = ({ children }) => {
                   ))}
                 </div>
                 <div className="border-t border-gray-700 pb-3 pt-4">
-                  <div className="flex items-center px-5">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src={userInfo.imageUrl}
-                        alt=""
-                      />
-                    </div>
+                  <div className="flex items-center ">
+                  
                     <div className="ml-3">
-                      <div className="text-base font-medium leading-none text-white">
-                        {/* this should come from userInfo */}
-                        {userInfo.name}
-                      </div>
                       <div className="text-sm font-medium leading-none text-gray-400">
                         {userInfo.email}
                       </div>

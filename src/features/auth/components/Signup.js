@@ -38,7 +38,7 @@ const Signup = () => {
                   email: data.email,
                   password: data.password,
                   addresses: [],
-                  role: "user", // TODO: This role can be directly givne on backend
+                  role: "user",
                 })
                 ); 
             })}

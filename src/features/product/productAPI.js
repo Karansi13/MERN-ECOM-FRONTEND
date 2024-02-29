@@ -1,8 +1,8 @@
 
-export function fetchProductById(id) {
+export function fetchProductById(_id) {
   // Todp : we will not hard-code server URL here
   return new Promise(async (resolve) => {
-    const response = await fetch("/products/"+id);
+    const response = await fetch("/products/"+_id);
     const data = await response.json();
     resolve({ data });
   });
@@ -10,7 +10,6 @@ export function fetchProductById(id) {
 
 // admin
 export function createProduct(product) {
-  // Todp : we will not hard-code server URL here
   return new Promise(async (resolve) => {
     const response = await fetch("/products/",{
       method: 'POST',
@@ -31,7 +30,6 @@ export function updateProduct(update) {
     headers: {'content-type': 'application/json'}
   })
   const data = await response.json()
-  // TODO: on server it will only return some info of user (not password)
   resolve({ data })
 }
 );
@@ -41,17 +39,15 @@ export function updateProduct(update) {
 export function fetchProductsByFilters(filter, sort, pagination, admin) {
   // filter = {"category":["smartphone","laptops"]}
   // sort = {_sort:"price",_order="desc"}
-  // pagination = {_page:1,_limit=10}
-  // TODO : on server we will support multi values in filter
-  // TODO : Server will filter deleted products in case of non-admin
+  // pagination = {_page:1,_limit=10}]
 
 //  fix the issue of pagination from backend
+// added multi values support in filter
   let queryString = '';
   for (let key in filter) {
     const categoryValues = filter[key];
     if (categoryValues.length) {
-      const lastCategoryValue = categoryValues[categoryValues.length - 1];
-      queryString += `${key}=${lastCategoryValue}&`;
+      queryString += `${key}=${categoryValues}&`;
     }
   }
   for (let key in sort) {
